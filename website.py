@@ -236,10 +236,11 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     return
 
 # --- Streamlit 介面設計 ---
-st.title("量子穿隧機率計算器")
+st.title('2026台大物理營 知識大對抗')
+st.subheader("量子穿隧機率計算機")
 
 # 1. 輸入 E_earned
-E_earned = st.number_input("請輸入賺到的能量 (E_earned, 單位: eV):", value=220)
+E_earned = st.number_input("請輸入賺到的能量 (單位: eV):", value=220)
 
 # 問題決定 prop_list (道具擁有情形)
 st.subheader("道具擁有情形")
@@ -252,22 +253,22 @@ prop_list = [int(p1), int(p2), int(p3), int(p4)]
 st.subheader('商店區')
 
 # 問題決定 potential_shape
-shape_choice = st.radio("1. 選擇位能壘形狀：",
+shape_choice = st.radio("1. 請選擇位能牆形狀：",
     options=[0, 1, 2, 3, 4],
-    format_func=lambda x: ["δ函數", "負的δ函數", "拋物線", "矩形", "三角形"][x])
+    format_func=lambda x: ["δ函數", "負的δ函數", "拋物線 (parabola)", "矩形(rectangle)", "三角形(triangle)"][x])
 
 # 問題決定 V0_ev
-v0_choice = st.radio("2. 選擇位能壘底下的總面積 (單位：eV * 0.02nm)：", options=[500, 400, 300, 200])
+v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[500, 400, 300, 200])
 
 # 問題決定 mul_h
-h_choice = st.radio("3. 普朗克常數倍數：", options=[1, 2, 3, 4])
+h_choice = st.radio("3. 請選擇普朗克常數倍數：", options=[1, 2, 3, 4])
 
 # 問題決定 mul_m
-m_choice = st.radio("4. 電子質量倍數：", options=[1, 0.25, 0.1, 0.063])
+m_choice = st.radio("4. 請選擇電子質量倍數：", options=[1, 0.25, 0.1, 0.063])
 
 # 這裡你可以繼續補足剩下的 4 個問題...
 
 # 執行計算
-if st.button("開始計算"):
+if st.button("計算"):
     # 調用你的函式 (記得修改函式內的 print 為 st.write)
     tunnelling_calculator(E_earned, shape_choice, v0_choice, h_choice, m_choice, prop_list)
