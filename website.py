@@ -99,7 +99,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif potential_shape - prop_list[0] == 0:
     E_consume += 0
   else:
-    print('輸入錯誤的potential shape')
+    st.error('別忘了自己有道具')
     return
 
   if V0_ev + prop_list[1] * 100 == 500:
@@ -111,7 +111,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif V0_ev + prop_list[1] * 100 == 200:
     E_consume += 180
   else:
-    print('輸入錯誤的V0_ev')
+    st.error('別忘了自己有道具')
     return
 
   if mul_h - prop_list[2] == 1:
@@ -123,7 +123,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif mul_h - prop_list[2] == 4:
     E_consume += 160
   else:
-    print('輸入錯誤的mul h')
+    st.error('別忘了自己有道具')
     return
 
   if (mul_m == 1) or (mul_m == 0.25 and prop_list[3]):
@@ -135,7 +135,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif mul_m == 0.063:
     E_consume += 160
   else:
-    print('輸入錯誤的mul m')
+    st.error('別忘了自己有道具')
     return
 
   E_ev = E_earned - E_consume
