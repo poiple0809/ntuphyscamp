@@ -126,7 +126,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.error('別忘了自己有道具')
     return
 
-  if (mul_m == 1) or (mul_m == 0.25 and prop_list[3]):
+  if (mul_m == 1 and prop_list[3] == 0) or (mul_m == 0.25 and prop_list[3]):
     E_consume += 0
   elif (mul_m == 0.25) or (mul_m == 0.1 and prop_list[3]):
     E_consume += 30
