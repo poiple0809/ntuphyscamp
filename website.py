@@ -179,6 +179,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     #print(f"矩形位壘參數：V0 = {V0_ev} eV, L = {L_nm} nm, E = {E_ev} eV")
     #print(f"WKB 指數項 K: {K_rect:.3e}")
     st.success(f"**穿隧機率 T: {T_rect * 100:.4f} %**")
+    return
 
   elif potential_shape == 4:
     # -----------------------------------------------------------
@@ -204,12 +205,17 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     #print(f"古典轉折點範圍: [{x1_tri:.2e} m, {x2_tri:.2e} m]")
     #print(f"WKB 指數項 K: {K_tri:.3e}")
     st.success(f"**穿隧機率 T: {T_tri * 100:.4f} %**")
+    return
 
   elif potential_shape == 2:
     # -----------------------------------------------------------
     # --- 拋物線位壘 (V_peak_quad = 1.5 V0) ---
     # -----------------------------------------------------------
     V_peak_quad_joules = 1.5 * V0_joules
+    if 1 - E_joules / V_peak_quad_joules <= 0:
+        T_quad = 1
+        st.success(f"**穿隧機率 T: {T_quad * 100:.4f} %**")
+        return
 
     # 計算古典轉折點 x1 和 x2 (V(x) = E)
     # E = V_peak_quad * (1 - 4/L^2 * (x - L/2)^2)
@@ -225,6 +231,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     #print(f"古典轉折點範圍: [{x1_quad:.2e} m, {x2_quad:.2e} m]")
     #print(f"WKB 指數項 K: {K_quad:.3e}")
     st.success(f"**穿隧機率 T: {T_quad * 100:.4f} %**")
+    return
 
   else:
     # -----------------------------------------------------------
