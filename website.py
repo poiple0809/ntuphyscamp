@@ -89,9 +89,9 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # 計算剩餘能量
   E_consume = 0
   if potential_shape - prop_list[0] == 1:
-    E_consume += 10
+    E_consume += 40
   elif potential_shape - prop_list[0] == 2:
-    E_consume += 90
+    E_consume += 110
   elif potential_shape - prop_list[0] == 3:
     E_consume += 130
   elif potential_shape - prop_list[0] == 4:
