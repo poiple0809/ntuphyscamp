@@ -91,11 +91,11 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   if potential_shape - prop_list[0] == 1:
     E_consume += 40
   elif potential_shape - prop_list[0] == 2:
-    E_consume += 110
-  elif potential_shape - prop_list[0] == 3:
     E_consume += 130
+  elif potential_shape - prop_list[0] == 3:
+    E_consume += 160
   elif potential_shape - prop_list[0] == 4:
-    E_consume += 180
+    E_consume += 190
   elif potential_shape - prop_list[0] == 0:
     E_consume += 0
   else:
@@ -162,7 +162,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # 粒子能量 E (E < V0 for tunneling)
   E_joules = E_ev * 1.602e-19  # J
 
-  if potential_shape == 3:
+  if potential_shape == 2:
     # -----------------------------------------------------------
     # --- 矩形位壘 ---
     # -----------------------------------------------------------
@@ -181,7 +181,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.success(f"**穿隧機率 T: {T_rect * 100:.4f} %**")
     return
 
-  elif potential_shape == 4:
+  elif potential_shape == 3:
     # -----------------------------------------------------------
     # --- 三角形位壘 (假設面積相同，V_peak = 2 * V0) ---
     # -----------------------------------------------------------
@@ -207,7 +207,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.success(f"**穿隧機率 T: {T_tri * 100:.4f} %**")
     return
 
-  elif potential_shape == 2:
+  elif potential_shape == 4:
     # -----------------------------------------------------------
     # --- 拋物線位壘 (V_peak_quad = 1.5 V0) ---
     # -----------------------------------------------------------
