@@ -220,7 +220,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
 
     V_quad = lambda x: potential_quadratic(x, V_peak_quad_joules, L_m)
 
-    T_quad, K_quad, _ = wkb_tunneling_probability(E_joules, m_e, V_quad, x1_quad, x2_quad)
+    T_quad, K_quad, _ = wkb_tunneling_probability(E_joules, m_e, V_quad, x1_quad, x2_quad, h)
 
     #print(f"古典轉折點範圍: [{x1_quad:.2e} m, {x2_quad:.2e} m]")
     #print(f"WKB 指數項 K: {K_quad:.3e}")
