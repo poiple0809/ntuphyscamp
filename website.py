@@ -91,11 +91,11 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   if potential_shape - prop_list[0] == 1:
     E_consume += 10
   elif potential_shape - prop_list[0] == 2:
-    E_consume += 75
+    E_consume += 90
   elif potential_shape - prop_list[0] == 3:
     E_consume += 130
   elif potential_shape - prop_list[0] == 4:
-    E_consume += 200
+    E_consume += 180
   elif potential_shape - prop_list[0] == 0:
     E_consume += 0
   else:
@@ -117,11 +117,11 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   if mul_h - prop_list[2] == 1:
     E_consume += 0
   elif mul_h - prop_list[2] == 2:
-    E_consume += 45
+    E_consume += 60
   elif mul_h - prop_list[2] == 3:
-    E_consume += 100
+    E_consume += 110
   elif mul_h - prop_list[2] == 4:
-    E_consume += 170
+    E_consume += 200
   else:
     st.error('別忘了自己有道具')
     return
@@ -129,11 +129,11 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   if (mul_m == 1 and prop_list[3] == 0) or (mul_m == 0.25 and prop_list[3]):
     E_consume += 0
   elif (mul_m == 0.25) or (mul_m == 0.1 and prop_list[3]):
-    E_consume += 45
+    E_consume += 60
   elif (mul_m == 0.1) or (mul_m == 0.063 and prop_list[3]):
-    E_consume += 100
+    E_consume += 110
   elif mul_m == 0.063:
-    E_consume += 170
+    E_consume += 200
   else:
     st.error('別忘了自己有道具')
     return
