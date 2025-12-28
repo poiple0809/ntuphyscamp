@@ -262,7 +262,7 @@ st.subheader('商店區')
 # 問題決定 potential_shape
 shape_choice = st.radio("1. 請選擇位能牆形狀：",
     options=[0, 1, 2, 3, 4],
-    format_func=lambda x: ["δ函數", "負的δ函數", "拋物線 (parabola)", "矩形(rectangle)", "三角形(triangle)"][x])
+    format_func=lambda x: ["δ函數", "負的δ函數", "矩形(rectangle)", "三角形(triangle)", "拋物線 (parabola)"][x])
 
 # 問題決定 V0_ev
 v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[500, 400, 300, 200])
