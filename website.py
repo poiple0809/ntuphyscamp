@@ -261,16 +261,41 @@ shape_choice = st.radio("1. 請選擇位能牆形狀：",
     format_func=lambda x: ["矩形(rectangle) (預設)", "拋物線 (parabola) (40eV)", "三角形(triangle) (60eV)", "正δ函數 (150eV)", "負δ函數 (160eV)"][x])
 
 # 問題決定 V0_ev
-v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[600, 500, 400, 300],
-                     format_func=lambda x:['600 (預設)', '500 (60eV)', '400 (100eV)', '300 (200eV)'][x])
+v0_display_labels = {
+    600: "600 (預設)",
+    500: "500 (60eV)",
+    400: "400 (100eV)",
+    300: "300 (200eV)"
+}
+
+v0_choice = st.radio(
+    "2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：",
+    options=[600, 500, 400, 300],
+    format_func=lambda x: v0_display_labels.get(x)
+)
 
 # 問題決定 mul_h
-h_choice = st.radio("3. 請選擇普朗克常數倍數：", options=[1, 2, 3, 4],
-                    format_func=lambda x:['1 (預設)', '2 (120eV)', '3 (180eV)', '4 (270eV)'][x])
+h_display_labels = {
+    1: "1 (預設)",
+    2: "2 (12eV)",
+    3: "3 (180eV)",
+    4: "4 (270eV)"
+}
+
+h_choice = st.radio("3. 請選擇普朗克常數倍數：",
+                    options=[1, 2, 3, 4],
+                    format_func=lambda x: h_display_labels.get(x))
 
 # 問題決定 mul_m
+m_display_labels = {
+    1: "1 (預設)",
+    0.25: "0.25 (12eV)",
+    0.1: "0.1 (180eV)",
+    0.063: "0.063 (270eV)"
+}
+
 m_choice = st.radio("4. 請選擇電子質量倍數：", options=[1, 0.25, 0.1, 0.063],
-                    format_func=lambda x:['1 (預設)', '0.25 (120eV)', '0.1 (180eV)', '0.063 (270eV)'][x])
+                    format_func=lambda x: m_display_labels.get(x))
 
 # 這裡你可以繼續補足剩下的 4 個問題...
 
