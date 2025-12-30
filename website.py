@@ -89,54 +89,50 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # 計算剩餘能量
   E_consume = 0
   if potential_shape - prop_list[0] == 1:
-    E_consume += 130
+    E_consume += 40
   elif potential_shape - prop_list[0] == 2:
-    E_consume += 160
+    E_consume += 60
   elif potential_shape - prop_list[0] == 3:
-    E_consume += 190
+    E_consume += 150
   elif potential_shape - prop_list[0] == 4:
-    E_consume += 200
+    E_consume += 160
   elif potential_shape - prop_list[0] == 0:
     E_consume += 0
   else:
     st.error('別忘了自己有道具')
-    return
 
-  if V0_ev + prop_list[1] * 100 == 500:
+  if V0_ev + prop_list[1] * 100 == 600:
     E_consume += 0
-  elif V0_ev + prop_list[1] * 100 == 400:
+  elif V0_ev + prop_list[1] * 100 == 500:
     E_consume += 60
+  elif V0_ev + prop_list[1] * 100 == 400:
+    E_consume += 100
   elif V0_ev + prop_list[1] * 100 == 300:
-    E_consume += 110
-  elif V0_ev + prop_list[1] * 100 == 200:
     E_consume += 200
   else:
     st.error('別忘了自己有道具')
-    return
 
   if mul_h - prop_list[2] == 1:
     E_consume += 0
   elif mul_h - prop_list[2] == 2:
-    E_consume += 60
+    E_consume += 120
   elif mul_h - prop_list[2] == 3:
-    E_consume += 110
+    E_consume += 180
   elif mul_h - prop_list[2] == 4:
-    E_consume += 200
+    E_consume += 270
   else:
     st.error('別忘了自己有道具')
-    return
 
   if (mul_m == 1 and prop_list[3] == 0) or (mul_m == 0.25 and prop_list[3]):
     E_consume += 0
   elif (mul_m == 0.25) or (mul_m == 0.1 and prop_list[3]):
-    E_consume += 60
+    E_consume += 120
   elif (mul_m == 0.1) or (mul_m == 0.063 and prop_list[3]):
-    E_consume += 110
+    E_consume += 180
   elif mul_m == 0.063:
-    E_consume += 200
+    E_consume += 270
   else:
     st.error('別忘了自己有道具')
-    return
 
   E_ev = E_earned - E_consume
 
@@ -162,7 +158,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # 粒子能量 E (E < V0 for tunneling)
   E_joules = E_ev * 1.602e-19  # J
 
-  if potential_shape == 1:
+  if potential_shape == 0:
     # -----------------------------------------------------------
     # --- 矩形位壘 ---
     # -----------------------------------------------------------
@@ -181,7 +177,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.success(f"**穿隧機率 T: {T_rect * 100:.4f} %**")
     return
 
-  elif potential_shape == 0:
+  elif potential_shape == 2:
     # -----------------------------------------------------------
     # --- 三角形位壘 (假設面積相同，V_peak = 2 * V0) ---
     # -----------------------------------------------------------
@@ -207,7 +203,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.success(f"**穿隧機率 T: {T_tri * 100:.4f} %**")
     return
 
-  elif potential_shape == 2:
+  elif potential_shape == 1:
     # -----------------------------------------------------------
     # --- 拋物線位壘 (V_peak_quad = 1.5 V0) ---
     # -----------------------------------------------------------
@@ -262,16 +258,19 @@ st.subheader('商店區')
 # 問題決定 potential_shape
 shape_choice = st.radio("1. 請選擇位能牆形狀：",
     options=[0, 1, 2, 3, 4],
-    format_func=lambda x: ["三角形(triangle)","矩形(rectangle)", "拋物線 (parabola)", "δ函數", "負的δ函數"][x])
+    format_func=lambda x: ["矩形(rectangle) (預設)", "拋物線 (parabola) (40eV)", "三角形(triangle) (60eV)", "正δ函數 (150eV)", "負δ函數 (160eV)"][x])
 
 # 問題決定 V0_ev
-v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[600, 500, 400, 300])
+v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[600, 500, 400, 300],
+                     format_func=lambda x:['600 (預設)', '500 (60eV)', '400 (100eV)', '300 (200eV)'][x])
 
 # 問題決定 mul_h
-h_choice = st.radio("3. 請選擇普朗克常數倍數：", options=[1, 2, 3, 4])
+h_choice = st.radio("3. 請選擇普朗克常數倍數：", options=[1, 2, 3, 4],
+                    format_func=lambda x:['1 (預設)', '2 (120eV)', '3 (180eV)', '4 (270eV)'][x])
 
 # 問題決定 mul_m
-m_choice = st.radio("4. 請選擇電子質量倍數：", options=[1, 0.25, 0.1, 0.063])
+m_choice = st.radio("4. 請選擇電子質量倍數：", options=[1, 0.25, 0.1, 0.063],
+                    format_func=lambda x:['1 (預設)', '0.25 (120eV)', '0.1 (180eV)', '0.063 (270eV)'][x])
 
 # 這裡你可以繼續補足剩下的 4 個問題...
 
