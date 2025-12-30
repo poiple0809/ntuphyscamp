@@ -235,7 +235,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     # -----------------------------------------------------------
     h_bar = h / (2 * np.pi)
     T_delta = 1 / (1 + m_e * (V0_joules * 0.02 * 1e-9) ** 2 / 2 / h_bar ** 2 / E_joules)
-    st.success(f"**穿隧機率 T: {T_delta * 100:.4f} %**")
+    st.success(f"**穿隧機率 T: {T_delta * 100:.2f} %**")
     return
 
 # --- Streamlit 介面設計 ---
