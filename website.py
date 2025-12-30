@@ -89,13 +89,13 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # 計算剩餘能量
   E_consume = 0
   if potential_shape - prop_list[0] == 1:
-    E_consume += 70
-  elif potential_shape - prop_list[0] == 2:
     E_consume += 130
-  elif potential_shape - prop_list[0] == 3:
+  elif potential_shape - prop_list[0] == 2:
     E_consume += 160
-  elif potential_shape - prop_list[0] == 4:
+  elif potential_shape - prop_list[0] == 3:
     E_consume += 190
+  elif potential_shape - prop_list[0] == 4:
+    E_consume += 200
   elif potential_shape - prop_list[0] == 0:
     E_consume += 0
   else:
@@ -162,7 +162,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # 粒子能量 E (E < V0 for tunneling)
   E_joules = E_ev * 1.602e-19  # J
 
-  if potential_shape == 2:
+  if potential_shape == 1:
     # -----------------------------------------------------------
     # --- 矩形位壘 ---
     # -----------------------------------------------------------
@@ -181,7 +181,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.success(f"**穿隧機率 T: {T_rect * 100:.4f} %**")
     return
 
-  elif potential_shape == 3:
+  elif potential_shape == 0:
     # -----------------------------------------------------------
     # --- 三角形位壘 (假設面積相同，V_peak = 2 * V0) ---
     # -----------------------------------------------------------
@@ -207,7 +207,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     st.success(f"**穿隧機率 T: {T_tri * 100:.4f} %**")
     return
 
-  elif potential_shape == 4:
+  elif potential_shape == 2:
     # -----------------------------------------------------------
     # --- 拋物線位壘 (V_peak_quad = 1.5 V0) ---
     # -----------------------------------------------------------
@@ -262,10 +262,10 @@ st.subheader('商店區')
 # 問題決定 potential_shape
 shape_choice = st.radio("1. 請選擇位能牆形狀：",
     options=[0, 1, 2, 3, 4],
-    format_func=lambda x: ["δ函數", "負的δ函數", "矩形(rectangle)", "三角形(triangle)", "拋物線 (parabola)"][x])
+    format_func=lambda x: ["三角形(triangle)","矩形(rectangle)", "拋物線 (parabola)", "δ函數", "負的δ函數"][x])
 
 # 問題決定 V0_ev
-v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[500, 400, 300, 200])
+v0_choice = st.radio("2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：", options=[600, 500, 400, 300])
 
 # 問題決定 mul_h
 h_choice = st.radio("3. 請選擇普朗克常數倍數：", options=[1, 2, 3, 4])
