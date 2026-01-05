@@ -240,10 +240,10 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
 
 # --- Streamlit 介面設計 ---
 st.title('2026台大物理營 知識大對抗')
+st.header("電子穿隧計算機")
 st.subheader("請輸入賺到的能量 (單位：eV)")
-
 # 1. 輸入 E_earned
-E_earned = st.number_input('', value=300)
+E_earned = st.number_input('E_input', value=300, label_visibility="collapsed")
 
 # 問題決定 prop_list (道具擁有情形)
 st.subheader("道具獲得情形")
@@ -256,9 +256,11 @@ prop_list = [int(p1), int(p2), int(p3), int(p4)]
 st.subheader('商店區')
 
 # 問題決定 potential_shape
-shape_choice = st.radio("1. 請選擇位能牆形狀：",
+st.write('請選擇位能牆的形狀')
+shape_choice = st.radio("shape_choosing",
     options=[0, 1, 2, 3, 4],
-    format_func=lambda x: ["矩形(rectangle) (預設)", "拋物線 (parabola) (40eV)", "三角形(triangle) (60eV)", "正δ函數 (150eV)", "負δ函數 (160eV)"][x])
+    format_func=lambda x: ["矩形(rectangle) (預設)", "拋物線 (parabola) (40eV)", "三角形(triangle) (60eV)", "正δ函數 (150eV)", "負δ函數 (160eV)"][x],
+    label_visibility="collapsed")
 
 # 問題決定 V0_ev
 v0_display_labels = {
