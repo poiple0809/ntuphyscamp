@@ -243,14 +243,14 @@ st.title('2026台大物理營 知識大對抗')
 st.subheader("量子穿隧機率計算機")
 
 # 1. 輸入 E_earned
-E_earned = st.number_input("請輸入賺到的能量 (單位: eV):", value=220)
+E_earned = st.number_input("請輸入賺到的能量 (單位: eV):", value=300)
 
 # 問題決定 prop_list (道具擁有情形)
-st.subheader("道具擁有情形")
-p1 = st.checkbox("擁有電池關道具")
-p2 = st.checkbox("擁有彈簧關道具")
-p3 = st.checkbox("擁有光學關道具")
-p4 = st.checkbox("擁有質量關道具")
+st.subheader("道具獲得情形")
+p1 = st.checkbox("御坂位能塑形器 (電池關道具)")
+p2 = st.checkbox("位能高度調整器 (彈簧關道具)")
+p3 = st.checkbox("光子能量調整器 (光學關道具)")
+p4 = st.checkbox("粒子質量調整器 (質量關道具)")
 prop_list = [int(p1), int(p2), int(p3), int(p4)]
 
 st.subheader('商店區')
@@ -288,9 +288,9 @@ h_choice = st.radio("3. 請選擇普朗克常數倍數：",
 
 # 問題決定 mul_m
 m_display_labels = {
-    1: "1 (預設)",
-    0.25: "0.25 (120eV)",
-    0.1: "0.1 (180eV)",
+    1: "1     (預設)",
+    0.25: "0.25  (120eV)",
+    0.1: "0.1   (180eV)",
     0.063: "0.063 (270eV)"
 }
 
