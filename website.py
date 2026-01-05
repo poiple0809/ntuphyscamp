@@ -100,7 +100,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif potential_shape - prop_list[0] == 0:
     E_consume += 0
   else:
-    st.error('別忘了自己有道具')
+    prop_used = False
 
   if V0_ev + prop_list[1] * 100 == 600:
     E_consume += 0
