@@ -243,7 +243,7 @@ st.title('2026台大物理營 知識大對抗')
 st.subheader("請輸入賺到的能量 (單位：eV)")
 
 # 1. 輸入 E_earned
-E_earned = st.number_input(value=300)
+E_earned = st.number_input('', value=300)
 
 # 問題決定 prop_list (道具擁有情形)
 st.subheader("道具獲得情形")
