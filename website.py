@@ -244,7 +244,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
 
 # --- Streamlit 介面設計 ---
 st.title('2026台大物理營 電子穿隧計算機')
-st.subheader("請輸入賺到的能量 (單位：eV)")
+st.subheader("賺到的能量 (單位：eV)")
 # 1. 輸入 E_earned
 E_earned = st.number_input('E_input', value=300, label_visibility="collapsed")
 
@@ -266,7 +266,7 @@ shape_choice = st.radio("shape_choosing",
     label_visibility="collapsed")
 
 # 問題決定 V0_ev
-st.write('2. 請選擇位能牆底下的總面積 (單位：eV * 0.02nm)：')
+st.write('2. 請選擇位能牆底下的總面積：\n(單位：eV * 0.02nm)')
 v0_display_labels = {
     600: "600 (預設)",
     500: "500 (60eV)",
