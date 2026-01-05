@@ -88,6 +88,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   # ----------------- 3. 範例使用與測試 -----------------
   # 計算剩餘能量
   E_consume = 0
+  prop_used = True
   if potential_shape - prop_list[0] == 1:
     E_consume += 40
   elif potential_shape - prop_list[0] == 2:
@@ -110,7 +111,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif V0_ev + prop_list[1] * 100 == 300:
     E_consume += 200
   else:
-    st.error('別忘了自己有道具')
+    prop_used = False
 
   if mul_h - prop_list[2] == 1:
     E_consume += 0
@@ -121,7 +122,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif mul_h - prop_list[2] == 4:
     E_consume += 270
   else:
-    st.error('別忘了自己有道具')
+    prop_used = False
 
   if (mul_m == 1 and prop_list[3] == 0) or (mul_m == 0.25 and prop_list[3]):
     E_consume += 0
@@ -132,7 +133,7 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
   elif mul_m == 0.063:
     E_consume += 270
   else:
-    st.error('別忘了自己有道具')
+    prop_used = False
 
   E_ev = E_earned - E_consume
 
@@ -175,7 +176,6 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     #print(f"矩形位壘參數：V0 = {V0_ev} eV, L = {L_nm} nm, E = {E_ev} eV")
     #print(f"WKB 指數項 K: {K_rect:.3e}")
     st.success(f"**穿隧機率 T: {T_rect * 100:.2f} %**")
-    return
 
   elif potential_shape == 2:
     # -----------------------------------------------------------
@@ -201,7 +201,6 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     #print(f"古典轉折點範圍: [{x1_tri:.2e} m, {x2_tri:.2e} m]")
     #print(f"WKB 指數項 K: {K_tri:.3e}")
     st.success(f"**穿隧機率 T: {T_tri * 100:.2f} %**")
-    return
 
   elif potential_shape == 1:
     # -----------------------------------------------------------
@@ -211,6 +210,8 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     if 1 - E_joules / V_peak_quad_joules <= 0:
         T_quad = 1
         st.success(f"**穿隧機率 T: {T_quad * 100:.2f} %**")
+        if prop_used == False:
+          st.error('別忘了自己有道具!')
         return
 
     # 計算古典轉折點 x1 和 x2 (V(x) = E)
@@ -227,7 +228,6 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     #print(f"古典轉折點範圍: [{x1_quad:.2e} m, {x2_quad:.2e} m]")
     #print(f"WKB 指數項 K: {K_quad:.3e}")
     st.success(f"**穿隧機率 T: {T_quad * 100:.2f} %**")
-    return
 
   else:
     # -----------------------------------------------------------
@@ -236,7 +236,11 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
     h_bar = h / (2 * np.pi)
     T_delta = 1 / (1 + m_e * (V0_joules * 0.02 * 1e-9) ** 2 / 2 / h_bar ** 2 / E_joules)
     st.success(f"**穿隧機率 T: {T_delta * 100:.2f} %**")
-    return
+
+  if prop_used == False:
+    st.error('別忘了自己有道具!')
+
+  return
 
 # --- Streamlit 介面設計 ---
 st.title('2026台大物理營 電子穿隧計算機')
