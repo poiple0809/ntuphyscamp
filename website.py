@@ -240,10 +240,10 @@ def tunnelling_calculator(E_earned, potential_shape, V0_ev, mul_h, mul_m, prop_l
 
 # --- Streamlit 介面設計 ---
 st.title('2026台大物理營 知識大對抗')
-st.subheader("量子穿隧機率計算機")
+st.subheader("請輸入賺到的能量 (單位：eV)")
 
 # 1. 輸入 E_earned
-E_earned = st.number_input("請輸入賺到的能量 (單位: eV):", value=300)
+E_earned = st.number_input(value=300)
 
 # 問題決定 prop_list (道具擁有情形)
 st.subheader("道具獲得情形")
